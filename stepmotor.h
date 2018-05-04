@@ -1,36 +1,43 @@
 /*********************************************************************/
-/****************     robogame2017 ×÷·çÓÅÁ¼×é     ********************/
-/****************            ²½½øµç»ú             ********************/
+/****************     robogame2017 ä½œé£ä¼˜è‰¯ç»„     ********************/
+/****************            æ­¥è¿›ç”µæœº             ********************/
 /*********************************************************************/
 
 #include "stm32f10x.h"
 
-/**********   Òı½Å   ***********/
+/**********   å¼•è„š   ***********/
 	 /******    GPIOA    ******/
 #define ENABLE_1 	GPIO_Pin_0
 #define MS1_1 		GPIO_Pin_6
 #define MS2_1 		GPIO_Pin_2
 #define MS3_1 		GPIO_Pin_3
 #define STEP_1		GPIO_Pin_4
-#define DIR_1			GPIO_Pin_5
+#define DIR_1		GPIO_Pin_5
 
 
-/*********  ²½½øÄ£Ê½  **********/
-#define FULL_STEP 			1
-#define HALF_STEP		 		2
-#define QUARTER_STEP 		4
-#define EIGHTH_STEP 		8
-#define SIXTEENTH_STEP 16
+/*********  æ­¥è¿›æ¨¡å¼  **********/
+#define FULL_STEP       1
+#define HALF_STEP       2
+#define QUARTER_STEP    4
+#define EIGHTH_STEP     8
+#define SIXTEENTH_STEP  16
 
-
-//Ò»È¦200²½
-void Stepmotor_Configuration(void);					//³õÊ¼»¯²½½øµç»ú
-void setPulsePerSecond1(u32 pulse);					//ÉèÖÃ²½½øµç»ú1 Ã¿ÃëÂö³å¸öÊı£¬²¢ÉèÖÃÎª³¤×ªÄ£Ê½
-void setSteps1(u32 pulse,u32 number);				//ÉèÖÃ²½½øµç»ú1 Ã¿ÃëÂö³å¸öÊı ºÍ ²½Êı£¨Âö³å¸öÊı£©£¬²¢ÉèÖÃÎª¼Æ²½Ä£Ê½
-void setResolution1(u8 resolution);					//ÉèÖÃ²½½øµç»ú1²½½øÄ£Ê½
-void disable1(void);												//Í£ÓÃ²½½øµç»ú1
-void enable1(void);													//Ê¹ÄÜ²½½øµç»ú1
-void setDirection1(u8 dir);									//ÉèÖÃ²½½øµç»ú1×ªÏò
-
-void delay_nus(u32);          						  //72MÊ±ÖÓÏÂ£¬Ô¼ÑÓÊ±us
-void delay_nms(u32);         						    //72MÊ±ÖÓÏÂ£¬Ô¼ÑÓÊ±ms
+//ä¸€åœˆ200æ­¥
+//åˆå§‹åŒ–æ­¥è¿›ç”µæœº
+void Stepmotor_Configuration(void);
+//è®¾ç½®æ­¥è¿›ç”µæœº1 æ¯ç§’è„‰å†²ä¸ªæ•°ï¼Œå¹¶è®¾ç½®ä¸ºé•¿è½¬æ¨¡å¼
+void setPulsePerSecond1(u32 pulse);
+//è®¾ç½®æ­¥è¿›ç”µæœº1 æ¯ç§’è„‰å†²ä¸ªæ•° å’Œ æ­¥æ•°ï¼ˆè„‰å†²ä¸ªæ•°ï¼‰ï¼Œå¹¶è®¾ç½®ä¸ºè®¡æ­¥æ¨¡å¼
+void setSteps1(u32 pulse,u32 number);
+//è®¾ç½®æ­¥è¿›ç”µæœº1æ­¥è¿›æ¨¡å¼
+void setResolution1(u8 resolution);
+//åœç”¨æ­¥è¿›ç”µæœº
+void disable1(void);							
+//ä½¿èƒ½æ­¥è¿›ç”µæœº11	
+void enable1(void);									
+//è®¾ç½®æ­¥è¿›ç”µæœº1è½¬å‘
+void setDirection1(u8 dir);							
+//72Mæ—¶é’Ÿä¸‹ï¼Œçº¦å»¶æ—¶us
+void delay_nus(u32);
+//72Mæ—¶é’Ÿä¸‹ï¼Œçº¦å»¶æ—¶ms
+void delay_nms(u32);	
